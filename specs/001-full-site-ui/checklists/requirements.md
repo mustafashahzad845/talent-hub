@@ -1,4 +1,4 @@
-# Specification Quality Checklist: Full-Suite HR Management UI (A–Z)
+# Specification Quality Checklist: Full-Site HR Management UI (A–Z)
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
 **Created**: 2026-09-06

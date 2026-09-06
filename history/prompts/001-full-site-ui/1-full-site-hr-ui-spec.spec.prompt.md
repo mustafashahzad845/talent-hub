@@ -1,26 +1,26 @@
 ---
 id: 1
-title: Full-suite HR UI spec
+title: Full-site HR UI spec
 stage: spec
 date: 2026-09-06
 surface: agent
 model: opencode/big-pickle
-feature: homepage-ui
-branch: 001-homepage-ui
+feature: full-site-ui
+branch: 001-full-site-ui
 user: User
 command: /sp.specify
-labels: ["frontend", "ui", "homepage", "dashboard", "design-system", "spec"]
+labels: ["frontend", "ui", "full-site", "dashboard", "design-system", "spec"]
 links:
-  spec: specs/001-homepage-ui/spec.md
+  spec: specs/001-full-site-ui/spec.md
   ticket: null
   adr: null
   pr: null
 files:
-  - specs/001-homepage-ui/spec.md
-  - specs/001-homepage-ui/checklists/requirements.md
-  - history/prompts/001-homepage-ui/1-full-suite-hr-ui-spec.spec.prompt.md
+  - specs/001-full-site-ui/spec.md
+  - specs/001-full-site-ui/checklists/requirements.md
+  - history/prompts/001-full-site-ui/1-full-site-hr-ui-spec.spec.prompt.md
 tests:
-  - Specification quality validation (checklist in specs/001-homepage-ui/checklists/requirements.md)
+  - Specification quality validation (checklist in specs/001-full-site-ui/checklists/requirements.md)
 ---
 
 ## Prompt
@@ -30,12 +30,12 @@ tests:
 
 ## Response snapshot
 
-Read docs (prd.md, features.md, plan.md), spec template, and the skills (frontend-design, hallmark, ui-ux-pro-max, theme-factory). Created branch 001-homepage-ui and wrote a full A–Z UI spec covering public home/marketing page, login, signup, HR dashboard, employee dashboard, employees list + profile, attendance, leaves, performance + goals, departments, and settings — all sharing one reusable design system (light SaaS + indigo/blue primary + dark sidebar), built with shadcn/ui + Tailwind, session-style against mock/seed data. Backend/API declared out of scope (UI-only).
+Read docs (prd.md, features.md, plan.md), spec template, and the skills (frontend-design, hallmark, ui-ux-pro-max, theme-factory). Created branch 001-full-site-ui and wrote a full A–Z UI spec covering login, signup, HR dashboard, employee dashboard, employees list + profile, attendance, leaves, performance + goals, departments, and settings — all sharing one reusable design system (light SaaS + indigo/blue primary + dark sidebar), built with shadcn/ui + Tailwind, rendered against mock/seed data. Backend/API declared out of scope (UI-only). Marketing/home page removed per user direction; spec covers the entire website's app UI.
 
 ## Outcome
 
-- ✅ Impact: Full-suite HR management UI spec produced for the 001-homepage-ui feature branch.
-- 🧪 Tests: Spec quality checklist (16/16 pass) written to specs/001-homepage-ui/checklists/requirements.md.
+- ✅ Impact: Full-site HR management UI spec produced for the 001-full-site-ui feature branch.
+- 🧪 Tests: Spec quality checklist (16/16 pass) written to specs/001-full-site-ui/checklists/requirements.md.
 - 📁 Files: spec.md, checklists/requirements.md, this PHR.
 - 🔁 Next prompts: /sp.clarify or /sp.plan; suggest reviewing before implementation.
 - 🧠 Reflection: Kept the spec UI-only and tech-agnostic; stack and theme choices captured via clarifying questions but not leaked as implementation details into the spec.

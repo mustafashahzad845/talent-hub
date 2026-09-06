@@ -1,6 +1,6 @@
-# Feature Specification: Full-Suite HR Management UI (A–Z)
+# Feature Specification: Full-Site HR Management UI (A–Z)
 
-**Feature Branch**: `001-homepage-ui`
+**Feature Branch**: `001-full-site-ui`
 **Created**: 2026-09-06
 **Status**: Draft
 **Input**: User description (verbatim): "bhai mujhe ui bana nhi hai shai hr manage menagemnt app ki tou ap sab se pehle @docs/ read kro or skills ka use kr k banao abhi only homepage banao desogn modern, profesional, pleasnt, asthetic, exiciting, elegant, beafutigl using skills frontend, hallmark, ui-ux-promax tou ab ap isk hisab se spec likho frontend ui k lie only tou ap mujh se Q poucho aur docs main prhna likha hai kia kia hcheez hon is k hisab se ui banani hai tou ap mujh s is hisab se Q poucho"
@@ -9,42 +9,24 @@
 
 ### Scope Summary
 
-The UI surface of Talent Hub is delivered as a single, coherent, modern SaaS product. Cleaning up the whole experience means the following pages are in scope and share **one reusable design system** so every page feels like the same product:
+The UI surface of Talent Hub is delivered as a single, coherent, modern SaaS product across the **entire website**. The following pages are in scope and share **one reusable design system** so every page feels like the same product:
 
-1. Public (marketing) home/landing page
-2. Login page
-3. Signup/Register page
-4. HR / Admin dashboard
-5. Employee dashboard
-6. Employees list + Employee profile (detail with tabs)
-7. Attendance page
-8. Leaves page
-9. Performance + Goals page
-10. Departments page
-11. Settings page
+1. Login page
+2. Signup/Register page
+3. HR / Admin dashboard
+4. Employee dashboard
+5. Employees list + Employee profile (detail with tabs)
+6. Attendance page
+7. Leaves page
+8. Performance + Goals page
+9. Departments page
+10. Settings page
 
 Full-stack backend (APIs, database, auth logic) is **out of scope** — this spec is strictly the visual/UI layer. All pages are built to render against mock/seed data so the UI can be demonstrated without a live API.
 
-### User Story 1 - Distinctive Public Marketing Home (Priority: P1)
+### User Story 1 - Branded Login & Signup (Priority: P1)
 
-A first-time visitor lands on the Talent Hub homepage. It must read as a modern, professional, attractive SaaS product pitch: a strong hero, a clear product value proposition, feature highlights (employee management, attendance, leaves, performance, departments), high-level stats, and clear calls-to-action to log in or sign up. The page must be beautiful, elegant, and exciting enough to build trust immediately.
-
-**Why this priority**: This is the product's front door. It sets brand/design tone for the entire suite and is what the demo/prospect first sees. It is fully demonstrable standalone with static content.
-
-**Independent Test**: A visitor can open the homepage and, without logging in, see hero + CTAs + features + stats + footer, and reach Login and Signup from the navigation. It needs no backend.
-
-**Acceptance Scenarios**:
-
-1. **Given** a new visitor, **When** they open the homepage at the root URL, **Then** they see a navigation bar, hero section with headline and primary call-to-action, feature highlights, a stats strip, and a footer — all styled consistently.
-2. **Given** a visitor viewing the homepage, **When** they click "Log in", **Then** they are taken to the Login page.
-3. **Given** a visitor viewing the homepage, **When** they click "Sign up" / "Get Started", **Then** they are taken to the Signup page.
-4. **Given** a visitor with any viewport size (320 / 375 / 414 / 768 / 1280 px), **When** they scroll the homepage, **Then** there is no horizontal scroll and all sections collapse responsively without broken layout.
-
----
-
-### User Story 2 - Branded Login & Signup (Priority: P1)
-
-Users authenticate through polished, on-brand Login and Signup pages that match the marketing page's visual language. The login page presents email + password fields and a submit action; signup collects the details needed to create an account. Both must include appropriate form states (default, focus, error, disabled, loading/submitting) and failure handling (invalid credentials style messaging).
+Users authenticate through polished, on-brand Login and Signup pages. The login page presents email + password fields and a submit action; signup collects the details needed to create an account. Both must include appropriate form states (default, focus, error, disabled, loading/submitting) and failure handling (invalid credentials style messaging), all matching the product's design system.
 
 **Why this priority**: Every authenticated user passes through auth screens; they must instill confidence and match the product brand.
 
@@ -59,7 +41,7 @@ Users authenticate through polished, on-brand Login and Signup pages that match 
 
 ---
 
-### User Story 3 - HR / Admin Dashboard (Priority: P1)
+### User Story 2 - HR / Admin Dashboard (Priority: P1)
 
 After login as HR or Admin, the dashboard is the operational home. It shows summary statistics (total employees, present today, on leave, late today, pending leaves, departments), charts, an activity feed, a calendar, employees by department, and recently joined employees — all presented in a modern SaaS dashboard layout with a navigation sidebar and top navbar.
 
@@ -76,7 +58,7 @@ After login as HR or Admin, the dashboard is the operational home. It shows summ
 
 ---
 
-### User Story 4 - Employee Dashboard (Priority: P2)
+### User Story 3 - Employee Dashboard (Priority: P2)
 
 Employees get their own dashboard reflecting self-service focus: personal profile snapshot, own attendance, own leave requests, own performance/goals. Data is scoped to "my data" as per the business rules (HR = full access; Employee = own data only).
 
@@ -92,7 +74,7 @@ Employees get their own dashboard reflecting self-service focus: personal profil
 
 ---
 
-### User Story 5 - Employees List & Profile (Priority: P1)
+### User Story 4 - Employees List & Profile (Priority: P1)
 
 HR manages the workforce via an employee table with avatar, employee ID, name, email, department, position, joining date, and status, plus search + filter. Clicking an employee opens a profile page with tabs: Overview, Attendance, Leaves, Performance, Skills, Employment History. Add/Edit/Delete actions are available (modals used for add/edit).
 
@@ -110,7 +92,7 @@ HR manages the workforce via an employee table with avatar, employee ID, name, e
 
 ---
 
-### User Story 6 - Attendance Page (Priority: P2)
+### User Story 5 - Attendance Page (Priority: P2)
 
 HR views and manages attendance via a table (employee, check-in, check-out, status) with statuses Present / Late / Absent shown as badges, plus an HR action to reject attendance (changes status to Absent). A check-in/out component exists (for self-service) and an attendance chart may be shown.
 
@@ -127,7 +109,7 @@ HR views and manages attendance via a table (employee, check-in, check-out, stat
 
 ---
 
-### User Story 7 - Leaves Page (Priority: P2)
+### User Story 6 - Leaves Page (Priority: P2)
 
 HR reviews and manages leave requests in a table (employee, leave type, from, to, reason, status) with statuses Pending/Approved/Rejected as badges and Approve/Reject actions for pending leaves. A leave request form (modal) collects employee, leave type (Annual/Sick/Casual/Emergency), dates, and reason. In-app notification/toast for status changes.
 
@@ -143,7 +125,7 @@ HR reviews and manages leave requests in a table (employee, leave type, from, to
 
 ---
 
-### User Story 8 - Performance & Goals (Priority: P2)
+### User Story 7 - Performance & Goals (Priority: P2)
 
 HR views employee performance (productivity, teamwork, punctuality, overall score) and goal tracking (title, description, status, target date, assigned employee). Performance cards + a goal tracker + a review/add form (modal) are included.
 
@@ -159,7 +141,7 @@ HR views employee performance (productivity, teamwork, punctuality, overall scor
 
 ---
 
-### User Story 9 - Departments & Settings (Priority: P3)
+### User Story 8 - Departments & Settings (Priority: P3)
 
 HR manages departments (list/table with employee count, add/edit/delete) and views a Settings page (profile/config). These complete the sidebar navigation's feature set.
 
@@ -191,33 +173,30 @@ HR manages departments (list/table with employee count, add/edit/delete) and vie
 ### Functional Requirements
 
 - **FR-001**: The product MUST use one shared, reusable design system (theme tokens, typography, color, spacing, component library) so all pages look consistent.
-- **FR-002**: The marketing homepage MUST include a navigation bar, hero with headline + primary CTA, feature highlights (employee management, attendance, leaves, performance, departments), a stats strip, and a footer.
-- **FR-003**: The marketing homepage MUST include calls-to-action that link to the Login and Signup pages.
-- **FR-004**: The marketing homepage MUST be responsive with no horizontal scroll at 320 / 375 / 414 / 768 / 1280 px.
-- **FR-005**: The Login page MUST present email + password inputs with visible labels, inline validation errors, a loading state on submit, and connect to Signup.
-- **FR-006**: The Signup page MUST present required registration fields with visible labels, inline validation (valid email, required fields, password confirmation), and a loading state on submit.
-- **FR-007**: After login, users MUST be routed to a role-appropriate dashboard: HR/Admin to the HR dashboard, Employee to the Employee dashboard (mockable for UI-only scope).
-- **FR-008**: The app shell MUST provide a navigation sidebar and top navbar shared across all protected pages, responsive on mobile (collapsible sidebar/drawer).
-- **FR-009**: The HR dashboard MUST display stat cards for Total Employees, Present Today, On Leave, Late Today, Pending Leaves, and Departments, plus charts, an activity feed, a calendar, employees by department, and recently joined employees.
-- **FR-010**: The Employee dashboard MUST display only the logged-in user's own data (profile snapshot, my attendance, my leaves, my performance) with employee-scoped navigation.
-- **FR-011**: The Employees list page MUST render a table with avatar, employee ID, name, email, department, position, joining date, and status, with search and filters (by department and status).
-- **FR-012**: The Employees list MUST support View, Add, Edit, and Delete actions, with Add/Edit in a modal and Delete confirmed via a dialog.
-- **FR-013**: The Employee profile page MUST show six tabs: Overview, Attendance, Leaves, Performance, Skills, and Employment History.
-- **FR-014**: The Overview tab MUST show name, position, department, email, phone, joining date, status, attendance %, leave count, and performance score.
-- **FR-015**: The Attendance page MUST show a table with employee, check-in, check-out, and Present/Late/Absent status badges, plus a "Reject attendance" action (with confirmation) that changes status to Absent.
-- **FR-016**: The Attendance page MUST include an attendance chart or summary and empty states.
-- **FR-017**: The Leaves page MUST show a table with employee, leave type (Annual/Sick/Casual/Emergency), start/end dates, reason, and Pending/Approved/Rejected status badges.
-- **FR-018**: The Leaves page MUST include Approve/Reject actions for pending leaves (with confirmation) and surface a toast notification on status change.
-- **FR-019**: The Leaves page MUST include a leave request form (modal) with leave type, dates, reason, and inline validation.
-- **FR-020**: The Performance page MUST show performance cards with productivity, teamwork, punctuality, and overall score.
-- **FR-021**: The Performance page MUST include a goal tracker showing title, description, status (Pending/In Progress/Completed), target date, and assigned employee, plus add-review/add-goal modals with validation.
-- **FR-022**: The Departments page MUST show departments with employee counts and Add/Edit/Delete actions via validated modals.
-- **FR-023**: The Settings page MUST render profile/configuration fields using the shared design system.
-- **FR-024**: Every list/table page MUST show a clear empty state with an actionable call-to-action when there is no data.
-- **FR-025**: All interactive components MUST ship states for default, hover, focus-visible, active, disabled, loading, error, and success.
-- **FR-026**: Color contrast for text MUST meet accessibility standards (at least 4.5:1 for normal text), and all icons MUST have accessible labels or be marked decorative.
-- **FR-027**: Motion MUST respect the user's reduced-motion preference, and transitions MUST use consistent, context-aware durations.
-- **FR-028**: The UI MUST consume mock/seed data (per representative demo employees from the PRD) so every page renders fully without a live backend.
+- **FR-002**: The Login page MUST present email + password inputs with visible labels, inline validation errors, a loading state on submit, and connect to Signup.
+- **FR-003**: The Signup page MUST present required registration fields with visible labels, inline validation (valid email, required fields, password confirmation), and a loading state on submit.
+- **FR-004**: After login, users MUST be routed to a role-appropriate dashboard: HR/Admin to the HR dashboard, Employee to the Employee dashboard (mockable for UI-only scope).
+- **FR-005**: The app shell MUST provide a navigation sidebar and top navbar shared across all protected pages, responsive on mobile (collapsible sidebar/drawer).
+- **FR-006**: The HR dashboard MUST display stat cards for Total Employees, Present Today, On Leave, Late Today, Pending Leaves, and Departments, plus charts, an activity feed, a calendar, employees by department, and recently joined employees.
+- **FR-007**: The Employee dashboard MUST display only the logged-in user's own data (profile snapshot, my attendance, my leaves, my performance) with employee-scoped navigation.
+- **FR-008**: The Employees list page MUST render a table with avatar, employee ID, name, email, department, position, joining date, and status, with search and filters (by department and status).
+- **FR-009**: The Employees list MUST support View, Add, Edit, and Delete actions, with Add/Edit in a modal and Delete confirmed via a dialog.
+- **FR-010**: The Employee profile page MUST show six tabs: Overview, Attendance, Leaves, Performance, Skills, and Employment History.
+- **FR-011**: The Overview tab MUST show name, position, department, email, phone, joining date, status, attendance %, leave count, and performance score.
+- **FR-012**: The Attendance page MUST show a table with employee, check-in, check-out, and Present/Late/Absent status badges, plus a "Reject attendance" action (with confirmation) that changes status to Absent.
+- **FR-013**: The Attendance page MUST include an attendance chart or summary and empty states.
+- **FR-014**: The Leaves page MUST show a table with employee, leave type (Annual/Sick/Casual/Emergency), start/end dates, reason, and Pending/Approved/Rejected status badges.
+- **FR-015**: The Leaves page MUST include Approve/Reject actions for pending leaves (with confirmation) and surface a toast notification on status change.
+- **FR-016**: The Leaves page MUST include a leave request form (modal) with leave type, dates, reason, and inline validation.
+- **FR-017**: The Performance page MUST show performance cards with productivity, teamwork, punctuality, and overall score.
+- **FR-018**: The Performance page MUST include a goal tracker showing title, description, status (Pending/In Progress/Completed), target date, and assigned employee, plus add-review/add-goal modals with validation.
+- **FR-019**: The Departments page MUST show departments with employee counts and Add/Edit/Delete actions via validated modals.
+- **FR-020**: The Settings page MUST render profile/configuration fields using the shared design system.
+- **FR-021**: Every list/table page MUST show a clear empty state with an actionable call-to-action when there is no data.
+- **FR-022**: All interactive components MUST ship states for default, hover, focus-visible, active, disabled, loading, error, and success.
+- **FR-023**: Color contrast for text MUST meet accessibility standards (at least 4.5:1 for normal text), and all icons MUST have accessible labels or be marked decorative.
+- **FR-024**: Motion MUST respect the user's reduced-motion preference, and transitions MUST use consistent, context-aware durations.
+- **FR-025**: The UI MUST consume mock/seed data (per representative demo employees from the PRD) so every page renders fully without a live backend.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -237,9 +216,9 @@ HR manages departments (list/table with employee count, add/edit/delete) and vie
 
 - **SC-001**: The complete UI can be demonstrated end-to-end with mock data, without a live backend, across all in-scope pages.
 - **SC-002**: All pages render without horizontal scroll at 320, 375, 414, 768, and 1280 px widths.
-- **SC-003**: A user can reach every page in the feature set (Home, Login, Signup, HR Dashboard, Employee Dashboard, Employees, Employee Profile, Attendance, Leaves, Performance, Departments, Settings) from the product's own navigation within at most 2 clicks/clicks-through.
+- **SC-003**: A user can reach every page in the feature set (Login, Signup, HR Dashboard, Employee Dashboard, Employees, Employee Profile, Attendance, Leaves, Performance, Departments, Settings) from the product's own navigation within at most 2 clicks/clicks-through.
 - **SC-004**: Text content achieves at least a 4.5:1 contrast ratio on its background for normal-sized text (WCAG AA), verified across all pages.
 - **SC-005**: All interactive components expose the full set of states (default, hover, focus, active, disabled, loading, error, success).
-- **SC-006**: A first-time visitor can identify what Talent Hub does and how to log in / sign up from the homepage in under 10 seconds.
+- **SC-006**: A user can identify what Talent Hub does and how to log in / sign up from the Login screen in under 10 seconds.
 - **SC-007**: All forms (login, signup, and modal forms) show inline, field-level validation errors without a page reload.
 - **SC-008**: Reduced-motion preference is honored — no disruptive motion for users who enable reduced-motion.
