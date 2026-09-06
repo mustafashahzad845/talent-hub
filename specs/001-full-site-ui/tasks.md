@@ -182,10 +182,10 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 7
 
-- [ ] T057 [P] [US7] Create PerformanceCard (metrics + derived overall score) in src/components/performance/PerformanceCard.tsx
-- [ ] T058 [P] [US7] Create GoalTracker (status badges, target date, assignee) in src/components/performance/GoalTracker.tsx
-- [ ] T059 [P] [US7] Create ReviewForm modal (RHF + Zod, 0–100 numeric ranges) in src/components/performance/ReviewForm.tsx
-- [ ] T060 [US7] Create performance page src/app/(protected)/performance/page.tsx (goals grid + add-goal modal)
+- [X] T057 [P] [US7] Create PerformanceCard (metrics + derived overall score) in src/components/performance/PerformanceCard.tsx
+- [X] T058 [P] [US7] Create GoalTracker (status badges, target date, assignee) in src/components/performance/GoalTracker.tsx
+- [X] T059 [P] [US7] Create ReviewForm modal (RHF + Zod, 0–100 numeric ranges) in src/components/performance/ReviewForm.tsx
+- [X] T060 [US7] Create performance page src/app/(protected)/performance/page.tsx (goals grid + add-goal modal)
 
 **Checkpoint**: Performance & Goals page functional independently
 
@@ -199,10 +199,10 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 8
 
-- [ ] T061 [P] [US8] Create DepartmentTable (name + employeeCount + actions) in src/components/departments/DepartmentTable.tsx
-- [ ] T062 [P] [US8] Create DepartmentForm modal (RHF + Zod) in src/components/departments/DepartmentForm.tsx
-- [ ] T063 [US8] Create departments page src/app/(protected)/departments/page.tsx (add/edit/delete with ConfirmDialog)
-- [ ] T064 [US8] Create settings page src/app/(protected)/settings/page.tsx (profile + config, RHF + Zod)
+- [X] T061 [P] [US8] Create DepartmentTable (name + employeeCount + actions) in src/components/departments/DepartmentTable.tsx
+- [X] T062 [P] [US8] Create DepartmentForm modal (RHF + Zod) in src/components/departments/DepartmentForm.tsx
+- [X] T063 [US8] Create departments page src/app/(protected)/departments/page.tsx (add/edit/delete with ConfirmDialog)
+- [X] T064 [US8] Create settings page src/app/(protected)/settings/page.tsx (profile + config, RHF + Zod)
 
 **Checkpoint**: All user stories independently functional
 
