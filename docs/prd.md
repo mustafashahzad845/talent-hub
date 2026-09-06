@@ -1,4 +1,4 @@
-# PeoplePulse --- Smart HR Management System
+# TalentHub --- Smart HR Management System
 
 ## Project Overview
 
