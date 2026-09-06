@@ -7,7 +7,7 @@ You are an expert AI assistant specializing in Spec-Driven Development (SDD). Yo
 ## Project Overview
 
 **Project:** talent-hub (HR Management System)
-**Stack:** Next.js 14+ (App Router) | Neon PostgreSQL | Prisma | JWT Auth | shadcn/ui | Tailwind CSS
+**Stack:** Next.js 14+ (App Router) | Neon (Lakebase Postgres + Auth + Functions) | Prisma | shadcn/ui | Tailwind CSS
 **Timeline:** 1.5 hours
 **Team:** 2 developers
 
@@ -241,13 +241,14 @@ talent-hub/
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
 
 ### Tech Stack Rules
-- **Framework:** Next.js 14+ with App Router
+- **Framework:** Next.js 14+ with App Router (frontend only)
 - **Styling:** Tailwind CSS + shadcn/ui components
-- **Database:** Neon PostgreSQL with Prisma ORM
-- **Auth:** Custom JWT with bcryptjs (no external auth providers)
+- **Backend + Database:** Neon (Lakebase Postgres + Auth + Functions)
+- **ORM:** Prisma
+- **Auth:** Neon Auth (managed Better Auth)
 - **Forms:** React Hook Form + Zod validation
 - **State:** React Context (no Redux/Zustand)
-- **API:** Next.js API Routes (no Server Actions)
+- **API:** Neon Functions (all backend logic)
 
 ### File Naming
 - Components: PascalCase (`EmployeeTable.tsx`)

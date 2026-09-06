@@ -12,13 +12,13 @@
 | Layer | Technology |
 |-------|------------|
 | Framework | Next.js 14+ (App Router) |
-| Database | Neon PostgreSQL |
+| Backend + Database | Neon (Lakebase Postgres + Auth + Functions) |
 | ORM | Prisma |
-| Auth | Custom JWT + bcryptjs |
+| Auth | Neon Auth (managed Better Auth) |
 | UI | shadcn/ui + Tailwind CSS |
 | Forms | React Hook Form + Zod |
 | State | React Context |
-| API | Next.js API Routes |
+| API | Neon Functions (serverless) |
 
 ---
 
@@ -37,39 +37,12 @@
 
 ---
 
-## API Routes
+## API Routes (Neon Functions)
 
-```
-/app/api/
-├── auth/
-│   ├── login/route.ts
-│   ├── register/route.ts
-│   └── logout/route.ts
-├── employees/
-│   ├── route.ts              (GET all, POST create)
-│   └── [id]/
-│       ├── route.ts          (GET, PUT, DELETE)
-│       ├── attendance/route.ts
-│       ├── leaves/route.ts
-│       └── performance/route.ts
-├── departments/
-│   ├── route.ts              (GET all, POST create)
-│   └── [id]/route.ts         (PUT, DELETE)
-├── attendance/
-│   ├── route.ts              (GET all, POST mark)
-│   └── [id]/route.ts         (PUT update, DELETE)
-├── leaves/
-│   ├── route.ts              (GET all, POST create)
-│   └── [id]/
-│       ├── route.ts          (GET one)
-│       ├── approve/route.ts
-│       └── reject/route.ts
-├── performance/
-│   ├── route.ts              (GET all, POST create)
-│   └── [id]/route.ts         (PUT update)
-├── dashboard/route.ts        (GET stats)
-└── search/route.ts           (GET search)
-```
+All backend logic runs on Neon Functions:
+- Authentication handled by Neon Auth
+- CRUD operations via Neon Functions
+- Serverless, scalable backend
 
 ---
 
@@ -143,7 +116,7 @@
 
 | # | Spec | Coverage |
 |---|------|----------|
-| 1 | auth | Login, Register, JWT, Middleware, Roles |
+| 1 | auth | Login, Register, Neon Auth, Middleware, Roles |
 | 2 | dashboard | Stats, Charts, Activity Feed, Calendar |
 | 3 | employees | CRUD, Search, Filter, Profile, Skills, History |
 | 4 | attendance | Auto-status, Check-in/out, HR Reject |
@@ -157,15 +130,16 @@
 
 ### Phase 1: Foundation (15 min)
 - [ ] Initialize Next.js project
-- [ ] Install dependencies (shadcn/ui, prisma, bcryptjs, jsonwebtoken, zod)
+- [ ] Install dependencies (shadcn/ui, prisma, zod)
 - [ ] Configure Tailwind + shadcn/ui
 - [ ] Set up Prisma schema + Neon connection
-- [ ] Create JWT helpers + auth middleware
+- [ ] Configure Neon Auth
+- [ ] Set up Neon Functions project structure
 
 ### Phase 2: Auth & Layout (20 min)
-- [ ] Login page + API
-- [ ] Register page + API
-- [ ] Auth middleware (protect routes)
+- [ ] Login page + Neon Auth integration
+- [ ] Register page + Neon Auth integration
+- [ ] Auth middleware (protect routes with Neon Auth)
 - [ ] Dashboard layout (Sidebar + Navbar)
 
 ### Phase 3: Dashboard (15 min)

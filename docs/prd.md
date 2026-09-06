@@ -42,7 +42,7 @@ in one dashboard.
 -   Register new users
 -   Protected dashboard
 -   Logout
--   Session handling with JWT
+-   Session handling with Neon Auth
 -   Roles: HR, ADMIN, EMPLOYEE
 
 ## 2. Smart Dashboard
@@ -221,14 +221,14 @@ Responsive on desktop, tablet, and mobile.
 
 # Recommended Tech Stack
 
--   **Framework:** Next.js 14+ (App Router)
--   **Database:** Neon PostgreSQL
+-   **Framework:** Next.js 14+ (App Router) - frontend only
+-   **Backend + Database:** Neon (Lakebase Postgres + Auth + Functions)
 -   **ORM:** Prisma
--   **Auth:** Custom JWT + bcryptjs
+-   **Auth:** Neon Auth (managed Better Auth)
 -   **UI:** shadcn/ui + Tailwind CSS
 -   **Forms:** React Hook Form + Zod
 -   **State:** React Context
--   **API:** Next.js API Routes
+-   **API:** Neon Functions (all backend logic)
 
 ------------------------------------------------------------------------
 
@@ -389,29 +389,18 @@ employees.id
 /settings
 ```
 
-## API Routes
+## API Routes (Neon Functions)
 
 ``` text
-/api/auth/login
-/api/auth/register
-/api/auth/logout
-/api/employees
-/api/employees/[id]
-/api/employees/[id]/attendance
-/api/employees/[id]/leaves
-/api/employees/[id]/performance
-/api/departments
-/api/departments/[id]
-/api/attendance
-/api/attendance/[id]
-/api/leaves
-/api/leaves/[id]
-/api/leaves/[id]/approve
-/api/leaves/[id]/reject
-/api/performance
-/api/performance/[id]
-/api/dashboard
-/api/search
+Neon Functions handle all backend logic:
+- Authentication (Neon Auth)
+- Employee CRUD
+- Attendance management
+- Leave management
+- Performance tracking
+- Department management
+- Dashboard statistics
+- Search functionality
 ```
 
 For speed, employee add/edit can use modals instead of separate pages.
@@ -486,14 +475,15 @@ For speed, employee add/edit can use modals instead of separate pages.
 -   Neon PostgreSQL + Prisma setup
 -   Database schema
 -   Relationships
--   Authentication (JWT + bcryptjs)
+-   Neon Auth configuration
+-   Neon Functions for all API logic
 -   Employee CRUD
 -   Attendance (auto-status)
 -   Leave approval/rejection
 -   Performance CRUD
 -   Goal CRUD
--   Dashboard statistics API
--   Search API
+-   Dashboard statistics
+-   Search functionality
 -   Demo/seed data
 
 **Priority:** working data operations.
@@ -505,7 +495,7 @@ For speed, employee add/edit can use modals instead of separate pages.
 ## Phase 1: Foundation (15 min)
 
 Both: - Create project - Install dependencies - Configure Tailwind +
-shadcn/ui - Set up Prisma schema + Neon connection - Create JWT helpers
+shadcn/ui - Set up Prisma schema + Neon connection - Configure Neon Auth
 + auth middleware
 
 ## Phase 2: Auth & Layout (20 min)
@@ -615,7 +605,7 @@ Departments
 ## Build
 
 -   Neon PostgreSQL + Prisma
--   Custom JWT authentication
+-   Neon Auth authentication
 -   Reusable components (shadcn/ui)
 -   Demo/seed data
 -   Important user flows
@@ -658,10 +648,10 @@ Departments
 
 # Security
 
-For the MVP: - Use Custom JWT with bcryptjs for password hashing - Never
-expose secret keys in frontend code - Use environment variables - Protect
-dashboard routes with auth middleware - Validate all forms with Zod - Use
-Prisma for secure database access
+For the MVP: - Use Neon Auth for authentication - Never expose secret keys
+in frontend code - Use environment variables - Protect dashboard routes
+with Neon Auth middleware - Validate all forms with Zod - Use Prisma for
+secure database access
 
 Example environment variables:
 
@@ -752,13 +742,13 @@ Alternative: **One Platform. Your Entire Workforce.**
 **Final Stack:**
 
 ``` text
-Next.js 14+ (App Router)
+Next.js 14+ (App Router) - Frontend only
 React
 Tailwind CSS
 shadcn/ui
-Neon PostgreSQL
+Neon (Lakebase Postgres + Auth + Functions) - Full backend
 Prisma
-Custom JWT + bcryptjs
+Neon Auth (Better Auth)
 React Hook Form + Zod
 React Context
 ```
