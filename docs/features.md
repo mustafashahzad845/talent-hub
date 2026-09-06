@@ -1,0 +1,6 @@
+-Login
+-Signup
+-Dashboard 
+-Roles (HR , Employee)
+- Functionality (Employe History , Attendance , Leave)
+- Global Search
