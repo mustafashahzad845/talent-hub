@@ -147,10 +147,10 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 5
 
-- [ ] T048 [P] [US5] Create AttendanceTable (check-in/out, status badges, row actions) in src/components/attendance/AttendanceTable.tsx
-- [ ] T049 [P] [US5] Create AttendanceChart in src/components/attendance/AttendanceChart.tsx
-- [ ] T050 [US5] Create attendance page src/app/(protected)/attendance/page.tsx
-- [ ] T051 [US5] Add reject-attendance flow (ConfirmDialog + status → Absent + toast) in src/components/attendance/AttendanceTable.tsx
+- [X] T048 [P] [US5] Create AttendanceTable (check-in/out, status badges, row actions) in src/components/attendance/AttendanceTable.tsx
+- [X] T049 [P] [US5] Create AttendanceChart in src/components/attendance/AttendanceChart.tsx
+- [X] T050 [US5] Create attendance page src/app/(protected)/attendance/page.tsx
+- [X] T051 [US5] Add reject-attendance flow (ConfirmDialog + status → Absent + toast) in src/components/attendance/AttendanceTable.tsx
 
 **Checkpoint**: Attendance page functional independently
 
@@ -164,11 +164,11 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 6
 
-- [ ] T052 [P] [US6] Create LeaveTable (leaveType, start/end, reason, status badges, actions) in src/components/leaves/LeaveTable.tsx
-- [ ] T053 [P] [US6] Create LeaveForm modal (RHF + Zod: endDate ≥ startDate, reason required) in src/components/leaves/LeaveForm.tsx
-- [ ] T054 [P] [US6] Create LeaveCard in src/components/leaves/LeaveCard.tsx
-- [ ] T055 [US6] Create leaves page src/app/(protected)/leaves/page.tsx
-- [ ] T056 [US6] Add approve/reject flow (ConfirmDialog + PENDING → APPROVED|REJECTED + toast + notification badge count) in src/components/leaves/LeaveTable.tsx
+- [X] T052 [P] [US6] Create LeaveTable (leaveType, start/end, reason, status badges, actions) in src/components/leaves/LeaveTable.tsx
+- [X] T053 [P] [US6] Create LeaveForm modal (RHF + Zod: endDate ≥ startDate, reason required) in src/components/leaves/LeaveForm.tsx
+- [X] T054 [P] [US6] Create LeaveCard in src/components/leaves/LeaveCard.tsx
+- [X] T055 [US6] Create leaves page src/app/(protected)/leaves/page.tsx
+- [X] T056 [US6] Add approve/reject flow (ConfirmDialog + PENDING → APPROVED|REJECTED + toast + notification badge count) in src/components/leaves/LeaveTable.tsx
 
 **Checkpoint**: Leaves page functional independently
 
