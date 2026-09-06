@@ -212,13 +212,13 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T065 [P] Responsive pass at 320/375/414/768/1280 px (no horizontal scroll; add html/body overflow-x: clip to src/app/globals.css; sidebar drawer on mobile in src/components/layout/Sidebar.tsx; no two-line clickable text)
-- [ ] T066 [P] Accessibility audit across src/components/** (4.5:1 contrast, visible :focus-visible rings, aria-labels on icon-only buttons, prefers-reduced-motion respected)
-- [ ] T067 [P] Empty-state coverage on all list pages (src/components/employees/EmployeeTable.tsx, src/components/attendance/AttendanceTable.tsx, src/components/leaves/LeaveTable.tsx, src/components/performance/GoalTracker.tsx, src/components/departments/DepartmentTable.tsx)
-- [ ] T068 [P] Loading states on all async/sidebar-navigation areas using src/components/shared/LoadingSpinner.tsx
-- [ ] T069 [P] Toast/sonner consistency pass across src/components/** (all destructive/approve actions fire toasts; button verbs match action verbs)
-- [ ] T070 Run `npm run lint` and `npm run build` (package.json scripts) and fix any errors
-- [ ] T071 Run quickstart.md verification per specs/001-full-site-ui/quickstart.md: load every route, exercise forms, checkpoints across all 8 user stories
+- [X] T065 [P] Responsive pass at 320/375/414/768/1280 px (no horizontal scroll; add html/body overflow-x: clip to src/app/globals.css; sidebar drawer on mobile in src/components/layout/Sidebar.tsx; no two-line clickable text)
+- [X] T066 [P] Accessibility audit across src/components/** (4.5:1 contrast, visible :focus-visible rings, aria-labels on icon-only buttons, prefers-reduced-motion respected)
+- [X] T067 [P] Empty-state coverage on all list pages (src/components/employees/EmployeeTable.tsx, src/components/attendance/AttendanceTable.tsx, src/components/leaves/LeaveTable.tsx, src/components/performance/GoalTracker.tsx, src/components/departments/DepartmentTable.tsx)
+- [X] T068 [P] Loading states on all async/sidebar-navigation areas using src/components/shared/LoadingSpinner.tsx
+- [X] T069 [P] Toast/sonner consistency pass across src/components/** (all destructive/approve actions fire toasts; button verbs match action verbs)
+- [X] T070 Run `npm run lint` and `npm run build` (package.json scripts) and fix any errors
+- [X] T071 Run quickstart.md verification per specs/001-full-site-ui/quickstart.md: load every route, exercise forms, checkpoints across all 8 user stories
 
 ---
 
