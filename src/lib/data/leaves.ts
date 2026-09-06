@@ -18,13 +18,21 @@ const leaveTypes: LeaveRequest["leaveType"][] = [
 function buildLeaves(): LeaveRequest[] {
   const requests: LeaveRequest[] = [];
   const pool = employees.filter((e) => e.status !== "INACTIVE");
-  const count = Math.min(24, pool.length);
+
+  const pendingEmpIds = ["emp-003", "emp-005", "emp-011", "emp-017", "emp-023"];
+  const count = Math.min(20, pool.length);
 
   for (let i = 0; i < count; i++) {
     const emp = pool[i];
-    const statusRoll = (i * 5) % 10;
-    const status: LeaveRequest["status"] =
-      statusRoll < 5 ? "PENDING" : statusRoll < 8 ? "APPROVED" : "REJECTED";
+    const isPendingSlot = pendingEmpIds.includes(emp.id);
+    const isApprovedSlot =
+      !isPendingSlot && i % 3 !== 2;
+
+    const status: LeaveRequest["status"] = isPendingSlot
+      ? "PENDING"
+      : isApprovedSlot
+        ? "APPROVED"
+        : "REJECTED";
 
     requests.push({
       id: `leave-${String(i + 1).padStart(3, "0")}`,
@@ -52,7 +60,7 @@ export const pendingLeaveCount = leaveRequests.filter(
   (l) => l.status === "PENDING"
 ).length;
 
-export const onLeaveCount = attendanceSummary.absent;
+export const onLeaveToday = attendanceSummary.absent;
 
 export function getEmployeeLeaves(employeeId: string): LeaveRequest[] {
   return leaveRequests.filter((l) => l.employeeId === employeeId);

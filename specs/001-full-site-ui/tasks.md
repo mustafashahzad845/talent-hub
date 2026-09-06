@@ -91,12 +91,12 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 2
 
-- [ ] T031 [P] [US2] Create StatsCards (Total Employees/Present/On Leave/Late/Pending/Departments) in src/components/dashboard/StatsCards.tsx
-- [ ] T032 [P] [US2] Create Charts (employees-by-department, attendance trend; Recharts + shadcn chart; legends + tooltips) in src/components/dashboard/Charts.tsx
-- [ ] T033 [P] [US2] Create ActivityFeed in src/components/dashboard/ActivityFeed.tsx
-- [ ] T034 [P] [US2] Create CalendarCard in src/components/dashboard/CalendarCard.tsx
-- [ ] T035 [P] [US2] Create RecentEmployees in src/components/dashboard/RecentEmployees.tsx
-- [ ] T036 [US2] Assemble HR dashboard page src/app/(protected)/dashboard/page.tsx (PageHeader + all dashboard components)
+- [X] T031 [P] [US2] Create StatsCards (Total Employees/Present/On Leave/Late/Pending/Departments) in src/components/dashboard/StatsCards.tsx
+- [X] T032 [P] [US2] Create Charts (employees-by-department, attendance trend; Recharts + shadcn chart; legends + tooltips) in src/components/dashboard/Charts.tsx
+- [X] T033 [P] [US2] Create ActivityFeed in src/components/dashboard/ActivityFeed.tsx
+- [X] T034 [P] [US2] Create CalendarCard in src/components/dashboard/CalendarCard.tsx
+- [X] T035 [P] [US2] Create RecentEmployees in src/components/dashboard/RecentEmployees.tsx
+- [X] T036 [US2] Assemble HR dashboard page src/app/(protected)/dashboard/page.tsx (PageHeader + all dashboard components)
 
 **Checkpoint**: HR dashboard renders fully and independently
 
@@ -110,9 +110,9 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 3
 
-- [ ] T037 [P] [US3] Create MyStats cards (attendance %, leave balance, performance score) in src/components/dashboard/MyStats.tsx
-- [ ] T038 [P] [US3] Add role-aware sidebar filtering to src/components/layout/Sidebar.tsx (employee: My Dashboard/Profile/Attendance/Leaves/Performance)
-- [ ] T039 [US3] Create employee dashboard page src/app/(protected)/my-dashboard/page.tsx
+- [X] T037 [P] [US3] Create MyStats cards (attendance %, leave balance, performance score) in src/components/dashboard/MyStats.tsx
+- [X] T038 [P] [US3] Add role-aware sidebar filtering to src/components/layout/Sidebar.tsx (employee: My Dashboard/Profile/Attendance/Leaves/Performance)
+- [X] T039 [US3] Create employee dashboard page src/app/(protected)/my-dashboard/page.tsx
 
 **Checkpoint**: Employee dashboard renders independently with scoped nav
 

@@ -11,34 +11,31 @@ function dateOf(daysAgo: number): string {
 
 function buildAttendance(): AttendanceRecord[] {
   const records: AttendanceRecord[] = [];
-  let present = 0;
-  let late = 0;
-  let absent = 0;
 
   employees.forEach((emp, i) => {
-    const roll = (i * 7) % 11;
-    let status: AttendanceRecord["status"] = "PRESENT";
-    let checkIn: string | null = "09:00";
-    let checkOut: string | null = "18:00";
+    let status: AttendanceRecord["status"];
+    let checkIn: string | null;
+    let checkOut: string | null;
 
-    if (roll === 3 || roll === 9) {
+    if (i < 112) {
+      status = "PRESENT";
+      checkIn = "09:00";
+      checkOut = "18:00";
+    } else if (i < 120) {
       status = "LATE";
       checkIn = "09:45";
-    } else if (roll === 5 || roll === 8 || roll === 10) {
+      checkOut = "18:10";
+    } else {
       status = "ABSENT";
       checkIn = null;
       checkOut = null;
     }
 
-    if (status === "PRESENT") present++;
-    else if (status === "LATE") late++;
-    else absent++;
-
     records.push({
       id: `att-${String(i + 1).padStart(3, "0")}`,
       employeeId: emp.id,
       employeeName: emp.name,
-      date: dateOf((i * 3) % 7),
+      date: dateOf(i % 7),
       checkIn,
       checkOut,
       status,
@@ -56,6 +53,16 @@ export const attendanceSummary = {
   absent: attendanceRecords.filter((r) => r.status === "ABSENT").length,
   total: attendanceRecords.length,
 };
+
+export const weeklyAttendanceTrend = [
+  { day: "Mon", present: 108, late: 9, absent: 11 },
+  { day: "Tue", present: 115, late: 6, absent: 7 },
+  { day: "Wed", present: 112, late: 8, absent: 8 },
+  { day: "Thu", present: 110, late: 10, absent: 8 },
+  { day: "Fri", present: 117, late: 5, absent: 6 },
+  { day: "Sat", present: 104, late: 12, absent: 12 },
+  { day: "Sun", present: 112, late: 8, absent: 8 },
+];
 
 export function getEmployeeAttendance(employeeId: string): AttendanceRecord[] {
   return attendanceRecords.filter((r) => r.employeeId === employeeId);
