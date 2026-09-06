@@ -126,14 +126,14 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 4
 
-- [ ] T040 [P] [US4] Create EmployeeTable (columns: avatar, employeeId, name, email, department, position, joiningDate, status; row actions) in src/components/employees/EmployeeTable.tsx
-- [ ] T041 [P] [US4] Create EmployeeForm modal (RHF + Zod; add/edit) in src/components/employees/EmployeeForm.tsx
-- [ ] T042 [US4] Wire search + department/status filters into EmployeeTable using shared SearchBar and src/lib/data/employees.ts
-- [ ] T043 [US4] Create employees list page src/app/(protected)/employees/page.tsx (PageHeader + Add button + table + delete ConfirmDialog)
-- [ ] T044 [P] [US4] Create ProfileTabs (6 tabs) in src/components/employees/ProfileTabs.tsx
-- [ ] T045 [P] [US4] Create EmployeeStats (attendance %, leave count, performance score) in src/components/employees/EmployeeStats.tsx
-- [ ] T046 [US4] Create employee profile page src/app/(protected)/employees/[id]/page.tsx (Overview tab per FR-011 + ProfileTabs)
-- [ ] T047 [US4] Ensure all 6 profile tabs render mock content incl. EmptyState in src/components/employees/ProfileTabs.tsx
+- [X] T040 [P] [US4] Create EmployeeTable (columns: avatar, employeeId, name, email, department, position, joiningDate, status; row actions) in src/components/employees/EmployeeTable.tsx
+- [X] T041 [P] [US4] Create EmployeeForm modal (RHF + Zod; add/edit) in src/components/employees/EmployeeForm.tsx
+- [X] T042 [US4] Wire search + department/status filters into EmployeeTable using shared SearchBar and src/lib/data/employees.ts
+- [X] T043 [US4] Create employees list page src/app/(protected)/employees/page.tsx (PageHeader + Add button + table + delete ConfirmDialog)
+- [X] T044 [P] [US4] Create ProfileTabs (6 tabs) in src/components/employees/ProfileTabs.tsx
+- [X] T045 [P] [US4] Create EmployeeStats (attendance %, leave count, performance score) in src/components/employees/EmployeeStats.tsx
+- [X] T046 [US4] Create employee profile page src/app/(protected)/employees/[id]/page.tsx (Overview tab per FR-011 + ProfileTabs)
+- [X] T047 [US4] Ensure all 6 profile tabs render mock content incl. EmptyState in src/components/employees/ProfileTabs.tsx
 
 **Checkpoint**: Employee list + profile fully functional independently
 
