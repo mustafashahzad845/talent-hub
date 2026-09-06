@@ -26,12 +26,12 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Initialize Next.js 14+ App Router project with TypeScript at repo root (package.json, tsconfig.json, next.config.mjs, src/ structure)
-- [ ] T002 [P] Configure Tailwind CSS + design tokens in src/app/globals.css (tokens from research D1: indigo/blue primary #2563EB, bg #F8FAFC, sidebar navy scope)
-- [ ] T003 [P] Initialize shadcn/ui in components.json and add base components to src/components/ui/: button, input, label, card, badge, table, tabs, dialog, dropdown-menu, avatar, select, textarea, separator, skeleton, tooltip
-- [ ] T004 [P] Configure Plus Jakarta Sans via next/font in src/app/layout.tsx (self-hosted, weights 400/600/700/800)
-- [ ] T005 [P] Configure ESLint, strict TypeScript in tsconfig.json, and Tailwind content config in tailwind.config.ts
-- [ ] T006 Create src/app/.env.example and env handling for NEXT_PUBLIC_* placeholders (no secrets in frontend)
+- [X] T001 Initialize Next.js 14+ App Router project with TypeScript at repo root (package.json, tsconfig.json, next.config.mjs, src/ structure)
+- [X] T002 [P] Configure Tailwind CSS + design tokens in src/app/globals.css (tokens from research D1: indigo/blue primary #2563EB, bg #F8FAFC, sidebar navy scope)
+- [X] T003 [P] Initialize shadcn/ui in components.json and add base components to src/components/ui/: button, input, label, card, badge, table, tabs, dialog, dropdown-menu, avatar, select, textarea, separator, skeleton, tooltip
+- [X] T004 [P] Configure Plus Jakarta Sans via next/font in src/app/layout.tsx (self-hosted, weights 400/600/700/800)
+- [X] T005 [P] Configure ESLint, strict TypeScript in tsconfig.json, and Tailwind content config in tailwind.config.ts
+- [X] T006 Create src/app/.env.example and env handling for NEXT_PUBLIC_* placeholders (no secrets in frontend)
 
 ---
 
@@ -41,23 +41,23 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create shared UI data types (Employee, Department, AttendanceRecord, LeaveRequest, PerformanceRecord, Goal, Skill, EmploymentHistory, ActivityItem, User/Role enums) in src/lib/types.ts per data-model.md
-- [ ] T008 [P] Create mock employee data (128 employees, PRD seeds Ali Khan/Sara Ahmed/Ahmed Raza/Usman Malik) in src/lib/data/employees.ts
-- [ ] T009 [P] Create mock departments data (IT, HR, Marketing, Finance, Sales, Operations + counts) in src/lib/data/departments.ts
-- [ ] T010 [P] Create mock attendance data (Present 112 / Late 8 / Absent counts) in src/lib/data/attendance.ts
-- [ ] T011 [P] Create mock leaves data (Annual/Sick/Casual/Emergency, Pending 5) in src/lib/data/leaves.ts
-- [ ] T012 [P] Create mock performance data (productivity/teamwork/punctuality/overall) in src/lib/data/performance.ts
-- [ ] T013 [P] Create mock goals data (Pending/In Progress/Completed) in src/lib/data/goals.ts
-- [ ] T014 [P] Create mock activity-feed items in src/lib/data/activity.ts
-- [ ] T015 [P] Create StatusBadge (enum → color, neutral fallback) in src/components/shared/StatusBadge.tsx
-- [ ] T016 [P] Create EmptyState (message + CTA slot) in src/components/shared/EmptyState.tsx
-- [ ] T017 [P] Create ConfirmDialog (destructive/approve confirm) in src/components/shared/ConfirmDialog.tsx
-- [ ] T018 [P] Create LoadingSpinner in src/components/shared/LoadingSpinner.tsx
-- [ ] T019 [P] Create SearchBar (debounced input, focus ring) in src/components/shared/SearchBar.tsx
-- [ ] T020 [P] Create PageHeader (title + subtitle + action slot) in src/components/shared/PageHeader.tsx
-- [ ] T021 Create DashboardLayout + Sidebar (dark navy, HR nav) + Navbar (title/search/notifications/avatar) in src/components/layout/
-- [ ] T022 Create protected route group src/app/(protected)/layout.tsx wrapping DashboardLayout, and root redirect src/app/page.tsx → /login
-- [ ] T023 Wire toast/sonner provider (Toaster) into src/app/layout.tsx
+- [X] T007 Create shared UI data types (Employee, Department, AttendanceRecord, LeaveRequest, PerformanceRecord, Goal, Skill, EmploymentHistory, ActivityItem, User/Role enums) in src/lib/types.ts per data-model.md
+- [X] T008 [P] Create mock employee data (128 employees, PRD seeds Ali Khan/Sara Ahmed/Ahmed Raza/Usman Malik) in src/lib/data/employees.ts
+- [X] T009 [P] Create mock departments data (IT, HR, Marketing, Finance, Sales, Operations + counts) in src/lib/data/departments.ts
+- [X] T010 [P] Create mock attendance data (Present 112 / Late 8 / Absent counts) in src/lib/data/attendance.ts
+- [X] T011 [P] Create mock leaves data (Annual/Sick/Casual/Emergency, Pending 5) in src/lib/data/leaves.ts
+- [X] T012 [P] Create mock performance data (productivity/teamwork/punctuality/overall) in src/lib/data/performance.ts
+- [X] T013 [P] Create mock goals data (Pending/In Progress/Completed) in src/lib/data/goals.ts
+- [X] T014 [P] Create mock activity-feed items in src/lib/data/activity.ts
+- [X] T015 [P] Create StatusBadge (enum → color, neutral fallback) in src/components/shared/StatusBadge.tsx
+- [X] T016 [P] Create EmptyState (message + CTA slot) in src/components/shared/EmptyState.tsx
+- [X] T017 [P] Create ConfirmDialog (destructive/approve confirm) in src/components/shared/ConfirmDialog.tsx
+- [X] T018 [P] Create LoadingSpinner in src/components/shared/LoadingSpinner.tsx
+- [X] T019 [P] Create SearchBar (debounced input, focus ring) in src/components/shared/SearchBar.tsx
+- [X] T020 [P] Create PageHeader (title + subtitle + action slot) in src/components/shared/PageHeader.tsx
+- [X] T021 Create DashboardLayout + Sidebar (dark navy, HR nav) + Navbar (title/search/notifications/avatar) in src/components/layout/
+- [X] T022 Create protected route group src/app/(protected)/layout.tsx wrapping DashboardLayout, and root redirect src/app/page.tsx → /login
+- [X] T023 Wire toast/sonner provider (Toaster) into src/app/layout.tsx
 
 **Checkpoint**: Foundation ready — user story implementation can now begin in parallel
 
@@ -71,13 +71,13 @@ description: "Task list for full-site UI implementation (Talent Hub HR Managemen
 
 ### Implementation for User Story 1
 
-- [ ] T024 [US1] Create AuthShell (brand panel + centered card, Plus Jakarta) in src/components/auth/AuthShell.tsx
-- [ ] T025 [P] [US1] Create login + signup Zod schemas (email format, required, password ≥8 + confirm) in src/lib/validations/auth.ts
-- [ ] T026 [P] [US1] Create LoginForm (RHF + Zod, loading state) in src/components/auth/LoginForm.tsx
-- [ ] T027 [P] [US1] Create SignupForm (RHF + Zod, confirm password, loading state) in src/components/auth/SignupForm.tsx
-- [ ] T028 [US1] Create login page src/app/login/page.tsx (links to /signup)
-- [ ] T029 [US1] Create signup page src/app/signup/page.tsx (links to /login)
-- [ ] T030 [US1] Create mock-auth role dispatch helper (HR/ADMIN → /dashboard, EMPLOYEE → /my-dashboard) in src/lib/auth/mock-auth.ts
+- [X] T024 [US1] Create AuthShell (brand panel + centered card, Plus Jakarta) in src/components/auth/AuthShell.tsx
+- [X] T025 [P] [US1] Create login + signup Zod schemas (email format, required, password ≥8 + confirm) in src/lib/validations/auth.ts
+- [X] T026 [P] [US1] Create LoginForm (RHF + Zod, loading state) in src/components/auth/LoginForm.tsx
+- [X] T027 [P] [US1] Create SignupForm (RHF + Zod, confirm password, loading state) in src/components/auth/SignupForm.tsx
+- [X] T028 [US1] Create login page src/app/login/page.tsx (links to /signup)
+- [X] T029 [US1] Create signup page src/app/signup/page.tsx (links to /login)
+- [X] T030 [US1] Create mock-auth role dispatch helper (HR/ADMIN → /dashboard, EMPLOYEE → /my-dashboard) in src/lib/auth/mock-auth.ts
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently (MVP)
 
