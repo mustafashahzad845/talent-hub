@@ -1,4 +1,4 @@
-# talent-hub Implementation Plan
+# Talent Hub Implementation Plan
 
 **Date:** 2026-09-06
 **Project:** talent-hub (HR Management System)

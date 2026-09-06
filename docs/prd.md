@@ -1,13 +1,13 @@
-# TalentHub --- Smart HR Management System
+# Talent Hub --- Smart HR Management System
 
 ## Project Overview
 
-PeoplePulse is a modern full-stack HR Management System for small and
+Talent Hub is a modern full-stack HR Management System for small and
 medium-sized organizations. It centralizes employee records, attendance,
-leave management, performance tracking, and HR analytics in one
-dashboard.
+leave management, performance tracking, goal tracking, and HR analytics
+in one dashboard.
 
-**Target:** 1-hour MVP, built by 2 developers with AI assistance.
+**Target:** 1.5-hour MVP, built by 2 developers with AI assistance.
 
 ## Main Users
 
@@ -23,11 +23,12 @@ dashboard.
 -   Manage performance
 -   Manage departments
 
-### Employee --- Future Scope
+### Employee
 
 -   Personal login
 -   View profile
 -   Submit leave requests
+-   Self check-in/out
 -   View attendance
 -   View performance
 
@@ -37,19 +38,20 @@ dashboard.
 
 ## 1. Authentication
 
--   HR/Admin login
+-   HR/Admin/Employee login
+-   Register new users
 -   Protected dashboard
 -   Logout
--   Session handling
--   Use Supabase Auth for the MVP
+-   Session handling with JWT
+-   Roles: HR, ADMIN, EMPLOYEE
 
 ## 2. Smart Dashboard
 
 Statistics: - Total Employees - Present Today - On Leave - Late Today -
 Departments - Pending Leave Requests
 
-Dashboard sections: - Attendance overview - Employees by department -
-Pending leave requests - Recently joined employees
+Dashboard sections: - Stats cards - Charts - Activity Feed - Calendar -
+Employees by department - Recently joined employees
 
 Example:
 
@@ -94,6 +96,8 @@ Overview
 Attendance
 Leaves
 Performance
+Skills
+Employment History
 ```
 
 ## 5. Attendance Management
@@ -108,6 +112,11 @@ Sara Ahmed    --           --           Absent
 ```
 
 Statuses: - Present - Late - Absent
+
+Auto-status logic: - Check-in before 9:30 AM = Present - Check-in after
+9:30 AM = Late - No check-in = Absent
+
+HR actions: - Reject attendance (changes status to Absent)
 
 Basic formula:
 
@@ -140,6 +149,8 @@ Pending → Approve
 Pending → Reject
 ```
 
+Notifications: - In-app notifications for leave status changes
+
 ## 7. Employee Performance
 
 Metrics: - Productivity - Teamwork - Punctuality - Overall score
@@ -163,14 +174,21 @@ Overall Score =
 Actions: - Add performance record - Update performance - View
 performance
 
-## 8. Department Management
+## 8. Goal Tracking
+
+Goal fields: - Title - Description - Status (Pending, In Progress,
+Completed) - Target Date - Employee
+
+Actions: - Create goal - Update goal status - View goals by employee
+
+## 9. Department Management
 
 Example departments: - IT - HR - Marketing - Finance - Sales -
 Operations
 
 Features: - Add - Edit - Delete - Employee count
 
-## 9. Global Search
+## 10. Global Search
 
 Search by: - Name - Email - Employee ID - Department - Position
 
@@ -203,32 +221,55 @@ Responsive on desktop, tablet, and mobile.
 
 # Recommended Tech Stack
 
--   **Frontend:** Next.js + React + Tailwind CSS
--   **Backend/Data:** Supabase
--   **Database:** Supabase PostgreSQL
--   **Authentication:** Supabase Auth
--   **Deployment:** Vercel
-
-For a 1-hour project, avoid a separate Express server unless your class
-specifically requires it. Supabase keeps authentication and database
-integration fast.
+-   **Framework:** Next.js 14+ (App Router)
+-   **Database:** Neon PostgreSQL
+-   **ORM:** Prisma
+-   **Auth:** Custom JWT + bcryptjs
+-   **UI:** shadcn/ui + Tailwind CSS
+-   **Forms:** React Hook Form + Zod
+-   **State:** React Context
+-   **API:** Next.js API Routes
 
 ------------------------------------------------------------------------
 
 # Database Design
 
+## users
+
+``` text
+id
+email
+password
+name
+role (HR, ADMIN, EMPLOYEE)
+created_at
+updated_at
+```
+
 ## employees
 
 ``` text
 id
+user_id
 name
 email
 phone
 department_id
 position
 joining_date
-status
+status (ACTIVE, ON_LEAVE, INACTIVE)
+avatar
 created_at
+updated_at
+```
+
+## departments
+
+``` text
+id
+name
+created_at
+updated_at
 ```
 
 ## attendance
@@ -239,8 +280,9 @@ employee_id
 date
 check_in
 check_out
-status
+status (PRESENT, LATE, ABSENT)
 created_at
+updated_at
 ```
 
 ## leaves
@@ -248,12 +290,13 @@ created_at
 ``` text
 id
 employee_id
-leave_type
+leave_type (ANNUAL, SICK, CASUAL, EMERGENCY)
 start_date
 end_date
 reason
-status
+status (PENDING, APPROVED, REJECTED)
 created_at
+updated_at
 ```
 
 ## performance
@@ -267,19 +310,53 @@ punctuality
 overall_score
 review_date
 created_at
+updated_at
 ```
 
-## departments
+## goals
 
 ``` text
 id
-name
+employee_id
+title
+description
+status (PENDING, IN_PROGRESS, COMPLETED)
+target_date
 created_at
+updated_at
+```
+
+## skills
+
+``` text
+id
+employee_id
+name
+level (BEGINNER, INTERMEDIATE, ADVANCED, EXPERT)
+created_at
+updated_at
+```
+
+## employment_history
+
+``` text
+id
+employee_id
+company
+position
+start_date
+end_date
+created_at
+updated_at
 ```
 
 Relationships:
 
 ``` text
+users.id
+      ↓
+employees.user_id
+
 departments.id
       ↓
 employees.department_id
@@ -287,15 +364,21 @@ employees.department_id
 employees.id
    ├── attendance.employee_id
    ├── leaves.employee_id
-   └── performance.employee_id
+   ├── performance.employee_id
+   ├── goals.employee_id
+   ├── skills.employee_id
+   └── employment_history.employee_id
 ```
 
 ------------------------------------------------------------------------
 
 # Suggested Routes
 
+## App Routes (Pages)
+
 ``` text
 /login
+/register
 /dashboard
 /employees
 /employees/[id]
@@ -303,6 +386,32 @@ employees.id
 /leaves
 /performance
 /departments
+/settings
+```
+
+## API Routes
+
+``` text
+/api/auth/login
+/api/auth/register
+/api/auth/logout
+/api/employees
+/api/employees/[id]
+/api/employees/[id]/attendance
+/api/employees/[id]/leaves
+/api/employees/[id]/performance
+/api/departments
+/api/departments/[id]
+/api/attendance
+/api/attendance/[id]
+/api/leaves
+/api/leaves/[id]
+/api/leaves/[id]/approve
+/api/leaves/[id]/reject
+/api/performance
+/api/performance/[id]
+/api/dashboard
+/api/search
 ```
 
 For speed, employee add/edit can use modals instead of separate pages.
@@ -312,22 +421,44 @@ For speed, employee add/edit can use modals instead of separate pages.
 # Component Structure
 
 ``` text
-components/
-├── Sidebar
-├── Navbar
-├── StatCard
-├── EmployeeTable
-├── EmployeeModal
-├── EmployeeProfile
-├── AttendanceTable
-├── LeaveTable
-├── LeaveModal
-├── PerformanceCard
-├── DepartmentTable
-├── SearchBar
-├── StatusBadge
-├── LoadingSpinner
-└── ConfirmDialog
+/components
+├── ui/                              → shadcn components
+├── layout/
+│   ├── Sidebar.tsx
+│   ├── Navbar.tsx
+│   └── DashboardLayout.tsx
+├── employees/
+│   ├── EmployeeTable.tsx
+│   ├── EmployeeCard.tsx
+│   ├── EmployeeForm.tsx
+│   ├── EmployeeProfile.tsx
+│   └── EmployeeStats.tsx
+├── attendance/
+│   ├── AttendanceTable.tsx
+│   ├── CheckInOut.tsx
+│   └── AttendanceChart.tsx
+├── leaves/
+│   ├── LeaveTable.tsx
+│   ├── LeaveForm.tsx
+│   └── LeaveCard.tsx
+├── performance/
+│   ├── PerformanceCard.tsx
+│   ├── GoalTracker.tsx
+│   └── ReviewForm.tsx
+├── departments/
+│   ├── DepartmentTable.tsx
+│   └── DepartmentForm.tsx
+├── dashboard/
+│   ├── StatsCards.tsx
+│   ├── ActivityFeed.tsx
+│   ├── Calendar.tsx
+│   └── Charts.tsx
+└── shared/
+    ├── SearchBar.tsx
+    ├── StatusBadge.tsx
+    ├── ConfirmDialog.tsx
+    ├── LoadingSpinner.tsx
+    └── EmptyState.tsx
 ```
 
 ------------------------------------------------------------------------
@@ -337,10 +468,10 @@ components/
 ## Developer 1 --- Frontend
 
 -   Next.js setup
--   Tailwind
--   Login UI
+-   Tailwind + shadcn/ui
+-   Login/Register UI
 -   Sidebar/navbar
--   Dashboard
+-   Dashboard (StatsCards, Charts, ActivityFeed, Calendar)
 -   Employee pages
 -   Employee profile
 -   Attendance UI
@@ -352,75 +483,72 @@ components/
 
 ## Developer 2 --- Backend / Database
 
--   Supabase setup
+-   Neon PostgreSQL + Prisma setup
 -   Database schema
 -   Relationships
--   Authentication
+-   Authentication (JWT + bcryptjs)
 -   Employee CRUD
--   Attendance
+-   Attendance (auto-status)
 -   Leave approval/rejection
 -   Performance CRUD
+-   Goal CRUD
+-   Dashboard statistics API
+-   Search API
 -   Demo/seed data
--   Security policies if time permits
 
 **Priority:** working data operations.
 
 ------------------------------------------------------------------------
 
-# 60-Minute Development Plan
+# 90-Minute Development Plan
 
-## 0--5 min
+## Phase 1: Foundation (15 min)
 
-Both: - Create project - Configure Supabase - Create tables - Add
-environment variables
+Both: - Create project - Install dependencies - Configure Tailwind +
+shadcn/ui - Set up Prisma schema + Neon connection - Create JWT helpers
++ auth middleware
 
-## 5--25 min
+## Phase 2: Auth & Layout (20 min)
 
-Developer 1: - Login - Layout - Dashboard - Employee table
+Developer 1: - Login/Register UI - Dashboard layout (Sidebar + Navbar)
 
-Developer 2: - Auth - Employee CRUD - Attendance - Leaves - Demo data
+Developer 2: - Login/Register API - Auth middleware - Protect routes
 
-## 25--40 min
+## Phase 3: Dashboard (15 min)
 
-Developer 1: - Employee profile - Attendance screen - Leave screen -
-Performance screen
+Developer 1: - StatsCards - Charts - ActivityFeed - Calendar
 
-Developer 2: - Connect attendance - Connect leaves - Leave
-approval/rejection - Performance - Dashboard statistics
+Developer 2: - Dashboard stats API - Seed data
 
-## 40--50 min
+## Phase 4: Employee Management (25 min)
 
-Integration: - Connect frontend to Supabase - Test CRUD - Test
-attendance - Test leave approval - Test performance
+Developer 1: - Employee table - Employee form modal - Employee profile
+with tabs - Employee stats
 
-## 50--57 min
+Developer 2: - Employee CRUD API - Search API
 
-Polish: - Responsive UI - Toasts - Loading states - Empty states - Demo
-data - Fix bugs
+## Phase 5: Attendance (20 min)
 
-## 57--60 min
+Developer 1: - Attendance table - Check-in/out component
 
-Final test:
+Developer 2: - Attendance API - Auto-status logic - HR reject attendance
 
-``` text
-Login
-↓
-Dashboard
-↓
-Employees
-↓
-Employee Profile
-↓
-Attendance
-↓
-Leaves
-↓
-Approve Leave
-↓
-Performance
-↓
-Dashboard
-```
+## Phase 6: Leave Management (20 min)
+
+Developer 1: - Leave table - Leave form - Notifications
+
+Developer 2: - Leave CRUD API - Approve/Reject API
+
+## Phase 7: Performance & Goals (20 min)
+
+Developer 1: - Performance card - Goal tracker - Review form
+
+Developer 2: - Performance CRUD API - Goal CRUD API
+
+## Phase 8: Department & Polish (15 min)
+
+Both: - Department CRUD - Responsive design - Loading + empty states -
+Error handling - Toast notifications - Final testing
 
 ------------------------------------------------------------------------
 
@@ -446,6 +574,18 @@ Add enough records to make the dashboard look populated.
 
 ------------------------------------------------------------------------
 
+# Business Rules
+
+| Rule | Logic |
+|------|-------|
+| Attendance | Check-in before 9:30 AM = Present, after = Late, none = Absent |
+| HR Reject | HR can reject attendance → status changes to Absent |
+| Leave Flow | Employee submit → Pending → HR Approve/Reject → Final |
+| Performance | Overall = (Productivity + Teamwork + Punctuality) / 3 |
+| Roles | HR = full access, Employee = own data only |
+
+---
+
 # Dashboard Calculations
 
 ``` text
@@ -463,6 +603,9 @@ On Leave
 
 Pending Leaves
 = COUNT(leaves WHERE status = 'Pending')
+
+Departments
+= COUNT(departments)
 ```
 
 ------------------------------------------------------------------------
@@ -471,15 +614,17 @@ Pending Leaves
 
 ## Build
 
--   Supabase
--   Reusable components
--   Demo data
+-   Neon PostgreSQL + Prisma
+-   Custom JWT authentication
+-   Reusable components (shadcn/ui)
+-   Demo/seed data
 -   Important user flows
 -   Working CRUD
+-   Goal tracking
 -   Responsive UI
 -   AI-assisted boilerplate
 
-## Do NOT build in the 1-hour MVP
+## Do NOT build in the 1.5-hour MVP
 
 -   Payroll
 -   Salary calculations
@@ -490,7 +635,6 @@ Pending Leaves
 -   Advanced analytics
 -   Multi-company tenancy
 -   Complex permissions
--   Employee self-service portal
 -   PDF reports
 
 ------------------------------------------------------------------------
@@ -500,11 +644,9 @@ Pending Leaves
 -   Payroll and salary slips
 -   Recruitment management
 -   Interview scheduling
--   Employee self-service portal
 -   Email/push notifications
 -   Advanced attendance analytics
 -   Performance review history
--   Goal tracking
 -   Employee documents
 -   Holiday calendar
 -   Organization-level roles
@@ -516,18 +658,18 @@ Pending Leaves
 
 # Security
 
-For the MVP: - Use Supabase Auth - Never expose secret keys in frontend
-code - Use environment variables - Protect dashboard routes - Validate
-forms - Use database access policies where possible
+For the MVP: - Use Custom JWT with bcryptjs for password hashing - Never
+expose secret keys in frontend code - Use environment variables - Protect
+dashboard routes with auth middleware - Validate all forms with Zod - Use
+Prisma for secure database access
 
-Example public environment variables:
+Example environment variables:
 
 ``` text
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
+DATABASE_URL
+JWT_SECRET
+NEXT_PUBLIC_APP_URL
 ```
-
-Never put a Supabase service-role key in client-side code.
 
 ------------------------------------------------------------------------
 
@@ -535,7 +677,7 @@ Never put a Supabase service-role key in client-side code.
 
 ## Name
 
-**PeoplePulse**
+**Talent Hub**
 
 ## Tagline
 
@@ -547,23 +689,24 @@ Alternative: **One Platform. Your Entire Workforce.**
 
 # Presentation Pitch
 
-> PeoplePulse is a smart HR management platform designed to centralize
-> employee management, attendance, leave processing, and performance
-> tracking in one modern dashboard. It helps HR teams reduce manual work
-> and get a clear overview of their workforce.
+> Talent Hub is a smart HR management platform designed to centralize
+> employee management, attendance, leave processing, performance
+> tracking, and goal management in one modern dashboard. It helps HR
+> teams reduce manual work and get a clear overview of their workforce.
 
 ------------------------------------------------------------------------
 
 # Demo Scenario
 
 1.  Login as HR/Admin
-2.  Show dashboard statistics
+2.  Show dashboard statistics, charts, activity feed, calendar
 3.  Search for an employee
-4.  Open employee profile
-5.  Show attendance
+4.  Open employee profile (show tabs: overview, attendance, leaves,
+    performance, skills, history)
+5.  Show attendance with auto-status
 6.  Open pending leave
-7.  Approve the leave
-8.  Open performance
+7.  Approve the leave (show in-app notification)
+8.  Open performance and goals
 9.  Return to dashboard and show updated data
 
 ------------------------------------------------------------------------
@@ -571,49 +714,53 @@ Alternative: **One Platform. Your Entire Workforce.**
 # Definition of Done
 
 -   [ ] HR can log in
--   [ ] Dashboard loads
--   [ ] Employees can be created
--   [ ] Employees can be edited
--   [ ] Employees can be deleted
--   [ ] Employees can be searched
--   [ ] Employee profile works
--   [ ] Attendance works
--   [ ] Leave requests work
--   [ ] Leave approval/rejection works
--   [ ] Performance works
--   [ ] Database stores data
+-   [ ] Employee can log in
+-   [ ] Dashboard loads with stats, charts, activity, calendar
+-   [ ] Employees CRUD works
+-   [ ] Employee profile with tabs works
+-   [ ] Attendance auto-status works
+-   [ ] Employee self check-in/out works
+-   [ ] HR can reject attendance
+-   [ ] Leave request/approval works
+-   [ ] In-app notifications work
+-   [ ] Performance tracking works
+-   [ ] Goal tracking works
+-   [ ] Department CRUD works
+-   [ ] Multi-field search works
 -   [ ] UI is responsive
--   [ ] Main demo flow works without errors
+-   [ ] Main demo flow works end-to-end
 
 ------------------------------------------------------------------------
 
 # Final MVP Architecture
 
 ``` text
-                 PEOPLEPULSE
-                     |
-          ┌──────────┴──────────┐
-          |                     |
-       HR LOGIN             DASHBOARD
-                                |
-       ┌──────────┬─────────────┼────────────┬────────────┐
-       ↓          ↓             ↓            ↓            ↓
-   Employees  Attendance      Leaves    Performance  Departments
-       |
-       ↓
- Employee Profile
+                 TALENT HUB
+                      |
+           ┌──────────┴──────────┐
+           |                     |
+        HR LOGIN             DASHBOARD
+                                 |
+        ┌──────────┬─────────────┼────────────┬────────────┐
+        ↓          ↓             ↓            ↓            ↓
+    Employees  Attendance      Leaves    Performance  Departments
+        |                                        |
+        ↓                                        ↓
+ Employee Profile                          Goal Tracking
 ```
 
 **Final Stack:**
 
 ``` text
-Next.js
+Next.js 14+ (App Router)
 React
 Tailwind CSS
-Supabase
-PostgreSQL
-Supabase Auth
-Vercel
+shadcn/ui
+Neon PostgreSQL
+Prisma
+Custom JWT + bcryptjs
+React Hook Form + Zod
+React Context
 ```
 
 **Team:**
@@ -624,4 +771,4 @@ Developer 2 → Database + Backend Logic
 ```
 
 **Target:** A polished, working HR SaaS MVP that can be built and
-demonstrated within approximately one hour with AI-assisted development.
+demonstrated within approximately 1.5 hours with AI-assisted development.
